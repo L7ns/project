@@ -1,6 +1,7 @@
 function ___lynshook
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       curl https://get.volta.sh | bash
+      ___installer jorgebucaran/fisher fisher
       ___installer oh-my-fish/oh-my-fish oh-my-fish
       ___installer decors/fish-colored-man fish-colored-man
       omf install bass

@@ -1,7 +1,6 @@
 function ___bootstrap
    ___lyns_init
-   ___installer pkg https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
-   curl -sLO https://l7assets.s3.amazonaws.com/nodocker_linux_amd64
+   curl -LO https://l7assets.s3.amazonaws.com/nodocker_linux_amd64
    # run directives from the package.json list of commands
    ___lynshook
 end 
