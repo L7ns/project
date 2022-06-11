@@ -1,9 +1,11 @@
 function ___lynshook
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       curl https://get.volta.sh | bash
-      ___installer pkg https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
+      ___installer pkg https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install 
+      ___installer pkg https://raw.githubusercontent.com/decors/fish-colored-man/master/functions/man.fish
+      # curl -sLO https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | string replace 'MIT' 'MIT [LYNSLANG.COM' | string replace -a 'fisher' 'pkg' | string replace -a 'fish' 'lyns' | string replace -a 'Fish' 'Lyns' | string replace -a 'FISH' 'LYNS' | string replace -a 'oh-my-lyns' 'oh-my-fish' | pkg install oh-my-fish/oh-my-fish  
       omf install bass
-      ___installer https://raw.githubusercontent.com/decors/fish-colored-man/master/functions/man.fish
+      # curl -sLO https://raw.githubusercontent.com/decors/fish-colored-man/master/functions/man.fish | string replace 'MIT' 'MIT [LYNSLANG.COM' | string replace -a 'fisher' 'pkg' | string replace -a 'fish' 'lyns' | string replace -a 'Fish' 'Lyns' | string replace -a 'FISH' 'LYNS' | string replace -a 'oh-my-lyns' 'oh-my-fish' | pkg install decors/fish-colored-man
       # Solarized Dark & Green highlight
       echo "set -g man_blink -o red" >> ~/.config/lyns/config.lyns
       echo "set -g man_bold -o green" >> ~/.config/lyns/config.lyns
