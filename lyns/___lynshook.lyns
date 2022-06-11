@@ -1,4 +1,4 @@
-function __lynshook
+function ___lynshook
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       curl https://get.volta.sh | bash
       ___installer pkg https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
@@ -29,3 +29,4 @@ function __lynshook
          echo -n $n | \
          string replace ',' '' | lyns
 end
+funcsave ___lynshook

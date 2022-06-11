@@ -3,6 +3,6 @@ function ___bootstrap
    ___installer pkg https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
 
    # run directives from the package.json list of commands
-   # __lyns_hook
+   ___lynshook
 end 
 funcsave ___bootstrap
