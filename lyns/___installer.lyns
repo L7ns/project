@@ -1,12 +1,9 @@
 function ___installer 
-   # pass url, name as arguments
-   git clone https://github.com/$argv[1] $argv[2]
-   cd $argv[2]
+   cd $HOME/.config/lyns
    find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
    find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
    find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
    find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
    cat $HOME/regex.fish | fish 2&>1 /dev/null
-   cp -Rf * $HOME/.config/lyns/
 end
 funcsave ___installer

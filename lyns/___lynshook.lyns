@@ -1,10 +1,14 @@
 function ___lynshook
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       curl https://get.volta.sh | bash
-      ___installer jorgebucaran/fisher fisher
-      ___installer oh-my-fish/oh-my-fish oh-my-fish
-      ___installer decors/fish-colored-man fish-colored-man
-      omf install bass
+      pkg install edc/bass
+      pkg install oh-my-fish/oh-my-fish
+      pkg install decors/fish-colored-man
+      pkg install jorgebucaran/nvm.fish
+      pkg install IlanCosman/tide@v5
+
+      # post-install fish -> lyns
+      ___installer
 
       # Solarized Dark & Green highlight
       echo "set -g man_blink -o red" >> ~/.config/lyns/config.lyns
