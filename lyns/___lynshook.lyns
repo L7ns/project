@@ -1,10 +1,10 @@
 function ___lynshook
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       curl https://get.volta.sh | bash
-      ___installer pkg https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install oh-my-fish/oh-my-fish
-      ___installer pkg https://raw.githubusercontent.com/decors/fish-colored-man/master/functions/man.fish decors/fish-colored-man
+      ___installer oh-my-fish/oh-my-fish oh-my-fish
+      ___installer decors/fish-colored-man fish-colored-man
       omf install bass
-      
+
       # Solarized Dark & Green highlight
       echo "set -g man_blink -o red" >> ~/.config/lyns/config.lyns
       echo "set -g man_bold -o green" >> ~/.config/lyns/config.lyns
