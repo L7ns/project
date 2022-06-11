@@ -1,0 +1,6 @@
+function ___lyns_init
+   mkdir -p ~/.config/bin
+   fish_add_path ~/.config/bin
+   set -x _DATESTAMP (date +%s)
+end
+funcsave ___lyns_init

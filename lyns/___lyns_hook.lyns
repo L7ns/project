@@ -1,0 +1,31 @@
+function __lynshook
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+      curl https://get.volta.sh | bash
+      ___installer pkg https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install
+      omf install bass
+      ___installer https://raw.githubusercontent.com/decors/fish-colored-man/master/functions/man.fish
+      # Solarized Dark & Green highlight
+      echo "set -g man_blink -o red" >> ~/.config/lyns/config.lyns
+      echo "set -g man_bold -o green" >> ~/.config/lyns/config.lyns
+      echo "set -g man_standout -b black 93a1a1" >> ~/.config/lyns/config.lyns
+      echo "set -g man_underline -u 93a1a1" >> ~/.config/lyns/config.lyns
+      echo "set -g man_blink -o red" >> ~/.config/fish/config.fish
+      echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
+      echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
+      echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
+      
+      if not set -q ~/pkgload/gist 
+         rm -rf ~/pkgload/gist 
+      end;
+      mkdir -p ~/pkgload/gist; cd ~/pkgload/gist
+      git clone -q https://github.com/l7ns/project .
+      set -e n
+      npm pkg get cmds | \
+      head -n-1 | \
+      tail -n +2 | \
+      while read -at i; \
+         set n "$n""$i"\n; \
+         end && \
+         echo -n $n | \
+         string replace ',' '' | lyns
+end
