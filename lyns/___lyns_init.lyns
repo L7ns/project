@@ -2,5 +2,7 @@ function ___lyns_init
    mkdir -p $HOME/.config/bin
    lyns_add_path ~/.config/bin
    set -x _DATESTAMP (date +%s)
+   cd ~/.config/lyns
+   ___installer
 end
 funcsave ___lyns_init

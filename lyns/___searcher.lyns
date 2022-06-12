@@ -1,0 +1,12 @@
+function ___searcher
+    echo ===========================================================================
+    pwd
+    echo ===========================================================================
+    find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
+    find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
+    find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
+    find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
+    fish -c 'for i in **.fish; echo mv $i (string replace -a -i fish lyns $i); mv $i (string replace -a -i fish lyns $i); end'
+    echo ===========================================================================
+end
+funcsave ___searcher

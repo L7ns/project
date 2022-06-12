@@ -1,9 +1,53 @@
 function ___installer 
-   cd $HOME/.config/lyns
-   find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
-   find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
-   find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
-   find . -maxdepth 6 -type f -name "*.fish" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
-   cat $HOME/regex.fish | fish 2&>1 /dev/null
+      set -lx myd (pwd)
+      set -lx cfl $HOME/.config/lyns 
+      set -lx cff $HOME/.config/fish 
+      set -lx etl /usr/src/etc/lyns 
+      set -lx ete /usr/src/etc/lyns/export
+      set -lx ets /usr/share/lyns
+      set -lx cfb config-lyns.backup.tar
+      set -lx vfu /usr/src/etc/lyns/vendor_functions.d
+      set -lx vfn /usr/src/etc/lyns/vendor_completions.d
+      set -lx vfd /usr/src/etc/lyns/vendor_conf.d
+
+      # if you pass a different config directory, it will skip lyns 
+      if set -q $argv[1]
+         cd $argv[1] && pushd .
+         cd functions && ___searcher && popd;
+         cd completions && ___searcher && popd;
+         cd conf.d && ___searcher && popd;
+      end
+
+      # defaults to ~/.config/lyns search and replacing
+      if not set -q $argv[1]
+         cd $cfl && pushd .
+         cd functions && ___searcher && popd;
+         cd completions && ___searcher && popd;
+         cd conf.d && ___searcher && popd;
+      end
+
+      # searches and replaces source 
+      cd $etl && pushd . 
+      cd functions && ___searcher && popd;
+      cd completions && ___searcher && popd;
+      cd conf.d && ___searcher && popd;
+
+      # searches and replaces share directory vendor conf
+      cd $ets && pushd . 
+      cd vendor_completions.d/ && ___searcher && popd;
+      cd vendor_functions.d/ && ___searcher && popd;
+      cd vendor_conf.d && ___searcher && popd;
+
+      # copies all vendor /usr/src/etc/vendor_* from ~/.config/lyns so they are hidden
+      cd $HOME/.config/lyns && \
+         mkdir -p $ete && tar cvf $ete/$cfb . && \
+         cd $ete && tar xvf $cfb && rmdir $vfu $vfn $vfd && \
+         mv functions ../vendor_functions.d && \
+         mv completions ../vendor_completions.d && \
+         mv conf.d ../vendor_conf.d
+         
+      # ratonale:  userspace begins less cluttered and they may override our functionality more easily
+
+      cd myd
 end
 funcsave ___installer

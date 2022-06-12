@@ -1,6 +1,22 @@
 function ___lynshook
       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
       curl https://get.volta.sh | bash
+
+      # fish install actions
+      fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+      fish -c "fisher install edc/bass"
+      fish -c "fisher install oh-my-fish/oh-my-fish"
+      fish -c "fisher install decors/fish-colored-man"
+      fish -c "fisher install jorgebucaran/nvm.fish"
+      fish -c "fisher install IlanCosman/tide@v5"
+
+# manual tide install
+#set -l _tide_tmp_dir (command mktemp -d)
+#curl https://codeload.github.com/ilancosman/tide/tar.gz/v5 | tar -xzC $_tide_tmp_dir
+#command cp -R $_tide_tmp_dir/*/{completions,conf.d,functions} $__fish_config_dir
+#fish_path=(status fish-path) exec $fish_path -C "emit _tide_init_install"
+
+      # lyns install actions
       pkg install edc/bass
       pkg install oh-my-fish/oh-my-fish
       pkg install decors/fish-colored-man
@@ -9,6 +25,10 @@ function ___lynshook
 
       # post-install fish -> lyns
       ___installer
+      rm ~/.config/lyns/1 && rm ~/.config/lyns/config.pkg
+
+      # debugging diff
+      diff -q ~/.config/lyns ~/.config/fish
 
       # Solarized Dark & Green highlight
       echo "set -g man_blink -o red" >> ~/.config/lyns/config.lyns
@@ -20,19 +40,31 @@ function ___lynshook
       echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
       echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
       
-      if not set -q ~/pkgload/gist 
-         rm -rf ~/pkgload/gist 
+      if not set -q ~/pkgload/project 
+         rm -rf ~/pkgload/project 
       end;
-      mkdir -p ~/pkgload/gist; cd ~/pkgload/gist
-      git clone -q https://github.com/l7ns/project .
-      set -e n
-      npm pkg get cmds | \
-      head -n-1 | \
-      tail -n +2 | \
-      while read -at i; \
-         set n "$n""$i"\n; \
-         end && \
-         echo -n $n | \
-         string replace ',' '' | lyns
+      mkdir -p ~/pkgload/project && cd ~/pkgload/project;
+      if type -q npm
+         git clone -q https://github.com/l7ns/project .
+         set -e n
+            npm pkg get cmds | \
+            head -n-1 | \
+            tail -n +2 | \
+            while read -at i; \
+               set n "$n""$i"\n; \
+               end && \
+               echo -n $n | \
+               string replace ',' '' | lyns
+      end;
+      if not type -q npm
+          echo "NPM could not be found, reloading the bashrc:"
+          if type -q bass 
+             cat ~/.bashrc | bass 
+          end;
+          if not type -q bass 
+             pkg install edc/bass 
+             cd 
+          end;
+      end;
 end
 funcsave ___lynshook
