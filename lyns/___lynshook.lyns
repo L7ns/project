@@ -1,20 +1,17 @@
 function ___lynshook
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-      curl https://get.volta.sh | bash
-
       # fish install actions
-      fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-      fish -c "fisher install edc/bass"
-      fish -c "fisher install oh-my-fish/oh-my-fish"
-      fish -c "fisher install decors/fish-colored-man"
-      fish -c "fisher install jorgebucaran/nvm.fish"
-      fish -c "fisher install IlanCosman/tide@v5"
+      # fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+      # fish -c "fisher install edc/bass"
+      # fish -c "fisher install oh-my-fish/oh-my-fish"
+      # fish -c "fisher install decors/fish-colored-man"
+      # fish -c "fisher install jorgebucaran/nvm.fish"
+      # fish -c "fisher install IlanCosman/tide@v5"
 
       # manual tide install
-      #set -l _tide_tmp_dir (command mktemp -d)
-      #curl https://codeload.github.com/ilancosman/tide/tar.gz/v5 | tar -xzC $_tide_tmp_dir
-      #command cp -R $_tide_tmp_dir/*/{completions,conf.d,functions} $__fish_config_dir
-      #fish_path=(status fish-path) exec $fish_path -C "emit _tide_init_install"
+      set -l _tide_tmp_dir (command mktemp -d)
+      curl https://codeload.github.com/ilancosman/tide/tar.gz/v5 | tar -xzC $_tide_tmp_dir
+      command cp -R $_tide_tmp_dir/*/{completions,conf.d,functions} $__fish_config_dir
+      fish_path=(status fish-path) exec $fish_path -C "emit _tide_init_install"
 
       # lyns install actions
       pkg install edc/bass
