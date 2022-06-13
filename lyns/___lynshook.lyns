@@ -10,7 +10,7 @@ function ___lynshook
       # set -l _tide_tmp_dir (command mktemp -d)
       # curl https://codeload.github.com/ilancosman/tide/tar.gz/v5 | tar -xzC $_tide_tmp_dir
       # command cp -R $_tide_tmp_dir/*/{completions,conf.d,functions} $__lyns_config_dir
-      lyns_path=(status lyns-path) exec $lyns_path -C "emit _tide_init_install"
+      # lyns_path=(status lyns-path) exec $lyns_path -C "emit _tide_init_install"
 
       # lyns install actions
       pkg install edc/bass
@@ -20,7 +20,6 @@ function ___lynshook
 
       # post-install fish -> lyns
       ___installer
-      rm ~/.config/lyns/config.pkg
 
       # debugging diff
       diff -q ~/.config/lyns ~/.config/fish
