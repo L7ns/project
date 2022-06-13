@@ -21,22 +21,22 @@ function ___installer
       # defaults to ~/.config/lyns search and replacing
       if not set -q $argv[1]
          cd $cfl && pushd .
-         cd functions && ___searcher && popd;
-         cd completions && ___searcher && popd;
-         cd conf.d && ___searcher && popd;
+         cd functions && ___searcher && popd;  pushd .
+         cd completions && ___searcher && popd;  pushd .
+         cd conf.d && ___searcher && popd;  pushd .
       end
 
       # searches and replaces source 
       cd $etl && pushd . 
-      cd functions && ___searcher && popd;
-      cd completions && ___searcher && popd;
-      cd conf.d && ___searcher && popd;
+      cd functions && ___searcher && popd;  pushd .
+      cd completions && ___searcher && popd;  pushd .
+      cd conf.d && ___searcher && popd;  pushd .
 
       # searches and replaces share directory vendor conf
       cd $ets && pushd . 
-      cd vendor_completions.d/ && ___searcher && popd;
-      cd vendor_functions.d/ && ___searcher && popd;
-      cd vendor_conf.d && ___searcher && popd;
+      cd vendor_completions.d/ && ___searcher && popd;  pushd .
+      cd vendor_functions.d/ && ___searcher && popd; pushd .
+      cd vendor_conf.d && ___searcher && popd; pushd .
 
       # copies all vendor /usr/src/etc/vendor_* from ~/.config/lyns so they are hidden
       cd $HOME/.config/lyns && \
