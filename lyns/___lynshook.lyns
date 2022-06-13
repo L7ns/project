@@ -4,7 +4,6 @@ function ___lynshook
       fish -c "fisher install edc/bass"
       fish -c "fisher install oh-my-fish/oh-my-fish"
       fish -c "fisher install decors/fish-colored-man"
-      fish -c "fisher install jorgebucaran/nvm.fish"
       fish -c "fisher install IlanCosman/tide@v5"
 
       # manual tide install
@@ -17,7 +16,6 @@ function ___lynshook
       pkg install edc/bass
       pkg install oh-my-fish/oh-my-fish
       pkg install decors/fish-colored-man
-      pkg install jorgebucaran/nvm.fish
       pkg install IlanCosman/tide@v5
 
       # post-install fish -> lyns
