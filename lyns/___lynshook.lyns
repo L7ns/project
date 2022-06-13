@@ -15,6 +15,16 @@ function ___lynshook
       ___installer
       pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
 
+     
+      rm -rf ~/.config/lyns 
+      cp -rf ~/.config/fish ~/.config/lyns 
+      cd ~/.config/lyns 
+      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
+      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
+      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
+      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
+      fish -c 'for i in **.fish; echo mv $i (string replace -a -i fish lyns $i); mv $i (string replace -a -i fish lyns $i); end'
+  
       # debugging diff
       # diff -q ~/.config/lyns ~/.config/fish
       mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
