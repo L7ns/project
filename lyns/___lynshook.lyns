@@ -23,7 +23,8 @@ function ___lynshook
 
       # debugging diff
       diff -q ~/.config/lyns ~/.config/fish
-
+      cp /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
+      
       # Solarized Dark & Green highlight
       echo "set -g man_blink -o red" >> ~/.config/lyns/config.lyns
       echo "set -g man_bold -o green" >> ~/.config/lyns/config.lyns

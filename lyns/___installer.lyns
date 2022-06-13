@@ -11,7 +11,7 @@ function ___installer
       set -lx vfd /usr/src/etc/lyns/vendor_conf.d
 
       # if you pass a different config directory, it will skip lyns 
-      if set -q $argv[1]
+      if not set -q $argv[1]
          cd $argv[1] && pushd .
          cd functions && ___searcher && popd;
          cd completions && ___searcher && popd;
@@ -19,7 +19,7 @@ function ___installer
       end
 
       # defaults to ~/.config/lyns search and replacing
-      if not set -q $argv[1]
+      if set -q $argv[1]
          cd $cfl && pushd .
          cd functions && ___searcher && popd;  pushd .
          cd completions && ___searcher && popd;  pushd .
