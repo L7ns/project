@@ -1,5 +1,5 @@
 function ___installer 
-      set -lx myd (pwd)
+
       set -lx cfl $HOME/.config/lyns 
       set -lx cff $HOME/.config/fish 
       set -lx etl /usr/src/etc/lyns 
@@ -45,9 +45,6 @@ function ___installer
          mv functions ../vendor_functions.d && \
          mv completions ../vendor_completions.d && \
          mv conf.d ../vendor_conf.d
-         
-      # ratonale:  userspace begins less cluttered and they may override our functionality more easily
-
-      cd myd
+      
 end
 funcsave ___installer
