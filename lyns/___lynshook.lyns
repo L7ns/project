@@ -55,3 +55,13 @@ function ___lynshook
       end;
 end
 funcsave ___lynshook
+
+function lyns_path 
+    pwd 
+end 
+funcsave lyns_path 
+
+function lyns-path 
+   pwd 
+end 
+funcsave lyns-path 
