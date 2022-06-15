@@ -6,45 +6,43 @@ function ___installer
       set -lx ete /usr/src/etc/lyns/export
       set -lx ets /usr/share/lyns
       set -lx cfb config-lyns.backup.tar
-      set -lx vfu /usr/src/etc/lyns/vendor_functions.d
-      set -lx vfn /usr/src/etc/lyns/vendor_completions.d
-      set -lx vfd /usr/src/etc/lyns/vendor_conf.d
+      set -lx vnd /usr/src/etc/lyns/
 
       # if you pass a different config directory, it will skip lyns 
+      # this is for future enhancements, like when we make the creator engine 
+      # so folks can make their own language extensions (and custom languages)
       if not set -q $argv[1]
-         cd $argv[1] && pushd .
-         cd functions && ___searcher && popd;
-         cd completions && ___searcher && popd;
-         cd conf.d && ___searcher && popd;
+         set -lx aro $argv[1]
+         cd $aro/functions && ___searcher
+         cd $aro/completions && ___searcher
+         cd $aro/conf.d && ___searcher
       end
 
       # defaults to ~/.config/lyns search and replacing
       if set -q $argv[1]
-         cd $cfl && pushd .
-         cd functions && ___searcher && popd;  pushd .
-         cd completions && ___searcher && popd;  pushd .
-         cd conf.d && ___searcher && popd;  pushd .
+         cd $cfl/functions && ___searcher
+         cd $cfl/completions && ___searcher
+         cd $cfl/conf.d && ___searcher
       end
 
-      # searches and replaces source 
-      cd $etl && pushd . 
-      cd functions && ___searcher && popd;  pushd .
-      cd completions && ___searcher && popd;  pushd .
-      cd conf.d && ___searcher && popd;  pushd .
-
-      # searches and replaces share directory vendor conf
-      cd $ets && pushd . 
-      cd vendor_completions.d/ && ___searcher && popd;  pushd .
-      cd vendor_functions.d/ && ___searcher && popd; pushd .
-      cd vendor_conf.d && ___searcher && popd; pushd .
+      # searches and replaces /usr/src   
+      cd $etl/functions && ___searcher
+      cd $etl/completions && ___searcher
+      cd $etl/conf.d && ___searcher
 
       # copies all vendor /usr/src/etc/vendor_* from ~/.config/lyns so they are hidden
       cd $HOME/.config/lyns && \
          mkdir -p $ete && tar cf $ete/$cfb . && \
          cd $ete && tar xf $cfb && \
-         mv functions ../vendor_functions.d && \
-         mv completions ../vendor_completions.d && \
-         mv conf.d ../vendor_conf.d
-      
+         mv functions/* ../vendor_functions.d/ && \
+         mv completions/* ../vendor_completions.d/ && \
+         mv conf.d/* ../vendor_conf.d/
+
+         # searches and replaces share directory (after these have been migrated)
+         cd $ete && mkdir -p ../vendor_completions ../vendor_functions.d ../vendor_conf.d
+         cd $vnd/vendor_completions.d/ && ___searcher
+         cd $vnd/vendor_functions.d/ && ___searcher
+         cd $vnd/vendor_conf.d && ___searcher
+
 end
 funcsave ___installer
