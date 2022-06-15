@@ -5,6 +5,12 @@ function ___lynshook
       fish -c "fisher install oh-my-fish/oh-my-fish"
       fish -c "fisher install decors/fish-colored-man"
       fish -c "fisher install IlanCosman/tide@v5"
+   
+      rm -rf $HOME/.config/lyns 
+      cp -rf $HOME/.config/fish $HOME/.config/lyns 
+      rm $HOME/.config/lyns/functions/_tide_item_nix_shell.lyns
+      rm $HOME/.config/lyns/functions/lyns_mode_prompt.lyns
+      rm $HOME/.config/lyns/completions/tide.lyns
 
       # lyns install actions
       pkg install edc/bass
@@ -15,10 +21,7 @@ function ___lynshook
       ___installer
       pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
 
-     
-      rm -rf ~/.config/lyns 
-      cp -rf ~/.config/fish ~/.config/lyns 
-      cd ~/.config/lyns 
+      cd $HOME/.config/lyns 
       find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
       find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
       find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
@@ -37,13 +40,9 @@ function ___lynshook
       echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
       echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
       echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
-      
-      if not set -q ~/pkgload/project 
-         rm -rf ~/pkgload/project 
-      end;
-      mkdir -p ~/pkgload/project && cd ~/pkgload/project;
+ 
       if type -q npm
-         git clone -q https://github.com/l7ns/project .
+         
          set -e n
             npm pkg get cmds | \
             head -n-1 | \
