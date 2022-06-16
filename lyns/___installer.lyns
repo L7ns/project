@@ -30,7 +30,7 @@ function ___installer
       cd $etl/completions && ___searcher
       cd $etl/conf.d && ___searcher
 
-      # copies all vendor /usr/src/etc/vendor_* from ~/.config/lyns so they are hidden
+      # copies all vendor /usr/src/etc/vendor_* from ~/.config/lyns 
       cd $HOME/.config/lyns && \
          mkdir -p $ete && tar cf $ete/$cfb . && \
          cd $ete && tar xf $cfb && \
