@@ -1,13 +1,3 @@
-function lyns_path 
-    pwd 
-end 
-funcsave lyns_path 
-
-function lyns-path 
-   pwd 
-end 
-funcsave lyns-path 
-
 function ___bootstrap
    ___lyns_init
    curl -LO https://l7assets.s3.amazonaws.com/nodocker_linux_amd64
