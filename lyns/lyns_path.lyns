@@ -2,8 +2,3 @@ function lyns_path
     pwd 
 end 
 funcsave lyns_path 
-
-function lyns-path 
-   pwd 
-end 
-funcsave lyns-path 
