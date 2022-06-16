@@ -8,7 +8,7 @@ function ___lynshook
    
       cp -rf $HOME/.config/fish $HOME/.config/lyns 
 
-    if not set -q installer_local
+    if set -q installer_local
          set -gx installer_local yes
 
          # lyns install actions
