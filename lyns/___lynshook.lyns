@@ -6,11 +6,13 @@ function ___lynshook
       fish -c "fisher install decors/fish-colored-man"
       fish -c "fisher install IlanCosman/tide@v5"
    
-      rm -rf $HOME/.config/lyns 
       cp -rf $HOME/.config/fish $HOME/.config/lyns 
-      rm $HOME/.config/lyns/functions/_tide_item_nix_shell.lyns
-      rm $HOME/.config/lyns/functions/lyns_mode_prompt.lyns
-      rm $HOME/.config/lyns/completions/tide.lyns
+
+      # actions for deterministic behavior (if this script is re-run)
+      pkg remove edc/bass
+      pkg remove oh-my-fish/oh-my-fish
+      pkg remove decors/fish-colored-man
+      pkg remove lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
 
       # lyns install actions
       pkg install edc/bass
