@@ -8,42 +8,39 @@ function ___lynshook
    
       cp -rf $HOME/.config/fish $HOME/.config/lyns 
 
-      # actions for deterministic behavior (if this script is re-run)
-      pkg remove edc/bass
-      pkg remove oh-my-fish/oh-my-fish
-      pkg remove decors/fish-colored-man
-      pkg remove lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
+    if not set -q installer_local
+         set -gx installer_local yes
 
-      # lyns install actions
-      pkg install edc/bass
-      pkg install oh-my-fish/oh-my-fish
-      pkg install decors/fish-colored-man
+         # lyns install actions
+         pkg install edc/bass
+         pkg install oh-my-fish/oh-my-fish
+         pkg install decors/fish-colored-man
 
-      # post-install fish -> lyns
-      pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
-      ___installer
+         # post-install fish -> lyns
+         pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
+         ___installer
 
 
-      cd $HOME/.config/lyns 
-      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
-      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
-      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
-      find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
-      fish -c 'for i in **.fish; echo mv $i (string replace -a -i fish lyns $i); mv $i (string replace -a -i fish lyns $i); end'
-  
-      # debugging diff
-      # diff -q ~/.config/lyns ~/.config/fish
-      mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
-      mv /app/_files/.config/config.lyns /app/_files/.config/lyns/config.lyns
-      mv /app/_files/.config/lyns_packages /app/_files/.config/lyns/lyns_packages
-      mv /app/_files/.config/lyns_variables /app/_files/.config/lyns/lyns_variables
+         cd $HOME/.config/lyns 
+         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
+         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
+         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
+         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
+         fish -c 'for i in **.fish; echo mv $i (string replace -a -i fish lyns $i); mv $i (string replace -a -i fish lyns $i); end'
+   
+         # debugging diff
+         # diff -q ~/.config/lyns ~/.config/fish
+         mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
+         mv /app/_files/.config/config.lyns /app/_files/.config/lyns/config.lyns
+         mv /app/_files/.config/lyns_packages /app/_files/.config/lyns/lyns_packages
+         mv /app/_files/.config/lyns_variables /app/_files/.config/lyns/lyns_variables
 
-      # Solarized Dark & Green highlight
-      echo "set -g man_blink -o red" >> ~/.config/fish/config.fish
-      echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
-      echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
-      echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
- 
+         # Solarized Dark & Green highlight
+         echo "set -g man_blink -o red" >> ~/.config/fish/config.fish
+         echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
+         echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
+         echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
+    end
       if type -q npm
          
          set -e n
