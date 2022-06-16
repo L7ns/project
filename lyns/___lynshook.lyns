@@ -12,11 +12,6 @@ function ___lynshook
       rm $HOME/.config/lyns/functions/lyns_mode_prompt.lyns
       rm $HOME/.config/lyns/completions/tide.lyns
 
-      pkg remove edc/bass
-      pkg remove oh-my-fish/oh-my-fish
-      pkg remove decors/fish-colored-man
-      pkg remove lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
-
       # lyns install actions
       pkg install edc/bass
       pkg install oh-my-fish/oh-my-fish
