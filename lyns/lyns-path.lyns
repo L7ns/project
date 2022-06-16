@@ -1,0 +1,4 @@
+function lyns-path 
+    pwd 
+end 
+funcsave lyns-path 
