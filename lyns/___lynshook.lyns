@@ -18,8 +18,9 @@ function ___lynshook
       pkg install decors/fish-colored-man
 
       # post-install fish -> lyns
-      ___installer
       pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
+      ___installer
+
 
       cd $HOME/.config/lyns 
       find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'

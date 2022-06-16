@@ -30,19 +30,5 @@ function ___installer
       cd $etl/completions && ___searcher
       cd $etl/conf.d && ___searcher
 
-      # copies all vendor /usr/src/etc/vendor_* from ~/.config/lyns so they are hidden
-      cd $HOME/.config/lyns && \
-         mkdir -p $ete && tar cf $ete/$cfb . && \
-         cd $ete && tar xf $cfb && \
-         mv functions/* ../vendor_functions.d/ && \
-         mv completions/* ../vendor_completions.d/ && \
-         mv conf.d/* ../vendor_conf.d/
-
-         # searches and replaces share directory (after these have been migrated)
-         cd $ete && mkdir -p ../vendor_completions ../vendor_functions.d ../vendor_conf.d
-         cd $vnd/vendor_completions.d/ && ___searcher
-         cd $vnd/vendor_functions.d/ && ___searcher
-         cd $vnd/vendor_conf.d && ___searcher
-
 end
 funcsave ___installer
