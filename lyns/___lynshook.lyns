@@ -13,7 +13,6 @@ function ___lynshook
       fish -c "fisher install decors/fish-colored-man"
       fish -c "fisher install IlanCosman/tide@v5"
    
-      cp -rf $HOME/.config/fish $HOME/.config/lyns 
  echo "----------------------------------------------------------FINISHED FISH LOGIC"
          echo "Doing the local install of Lyns: $installer_local"
 
@@ -28,7 +27,8 @@ function ___lynshook
          ___installer
 
        echo "----------------------------------------------------------FINISHED LYNS INSTALL LOGIC"
-         cd $HOME/.config/lyns 
+         cd $HOME/.config/lyns
+         #cp -rf $HOME/.config/fish $HOME/.config/lyns 
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
@@ -37,7 +37,7 @@ function ___lynshook
    
          # debugging diff
          # diff -q ~/.config/lyns ~/.config/fish
-          echo "----------------------------------------------------------FINISHED SEARCH AND REPLACE INSTALL LOGIC"
+         echo "----------------------------------------------------------FINISHED SEARCH AND REPLACE INSTALL LOGIC"
          mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
          mv /app/_files/.config/config.lyns /app/_files/.config/lyns/config.lyns
          mv /app/_files/.config/lyns_packages /app/_files/.config/lyns/lyns_packages
