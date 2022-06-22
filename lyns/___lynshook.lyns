@@ -1,5 +1,7 @@
 function ___lynshook
       echo "----------------------------------------------------------FISH HOOK INSTALL LOGIC"
+    if set -q installer_local 
+   
       # fish install actions
       fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
       fish -c "fisher install edc/bass"
@@ -8,8 +10,7 @@ function ___lynshook
       fish -c "fisher install IlanCosman/tide@v5"
    
       cp -rf $HOME/.config/fish $HOME/.config/lyns 
-
-    if ! test -z $installer_local && test -z (set -q $installer_local); 
+ echo "----------------------------------------------------------FINISHED FISH LOGIC"
          echo "Doing the local install of Lyns: $installer_local"
          set -gx installer_local yes
          
@@ -22,7 +23,7 @@ function ___lynshook
          pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
          ___installer
 
-
+       echo "----------------------------------------------------------FINISHED LYNS INSTALL LOGIC"
          cd $HOME/.config/lyns 
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
@@ -32,6 +33,7 @@ function ___lynshook
    
          # debugging diff
          # diff -q ~/.config/lyns ~/.config/fish
+          echo "----------------------------------------------------------FINISHED SEARCH AND REPLACE INSTALL LOGIC"
          mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
          mv /app/_files/.config/config.lyns /app/_files/.config/lyns/config.lyns
          mv /app/_files/.config/lyns_packages /app/_files/.config/lyns/lyns_packages
@@ -42,6 +44,7 @@ function ___lynshook
          echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
          echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
          echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
+          echo "----------------------------------------------------------FISH MANPAGE LOGIC"
     end
       if type -q npm
          
