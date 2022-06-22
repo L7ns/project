@@ -8,9 +8,10 @@ function ___lynshook
    
       cp -rf $HOME/.config/fish $HOME/.config/lyns 
 
-    if set -q installer_local
+    if ! test -z $installer_local && test -z (set -q $installer_local); 
+         echo "Doing the local install of Lyns: $installer_local"
          set -gx installer_local yes
-
+         
          # lyns install actions
          pkg install edc/bass
          pkg install oh-my-fish/oh-my-fish
