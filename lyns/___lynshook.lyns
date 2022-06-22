@@ -13,22 +13,13 @@ function ___lynshook
       fish -c "fisher install decors/fish-colored-man"
       fish -c "fisher install IlanCosman/tide@v5"
    
- echo "----------------------------------------------------------FINISHED FISH LOGIC"
-         echo "Doing the local install of Lyns: $installer_local"
-
-         
-         # lyns install actions
-         pkg install edc/bass
-         pkg install oh-my-fish/oh-my-fish
-         pkg install decors/fish-colored-man
-
-         # post-install fish -> lyns
-         pkg install lynsei/tide@bade3ecc4ac88d63449b4b96095cc24cdf7520c4
-         ___installer
+      echo "----------------------------------------------------------FINISHED FISH LOGIC"
+      echo "Doing the local install of Lyns: $installer_local"
 
        echo "----------------------------------------------------------FINISHED LYNS INSTALL LOGIC"
          cd $HOME/.config/lyns
-         #cp -rf $HOME/.config/fish $HOME/.config/lyns 
+         rm -Rf $HOME/.config/lyns
+         cp -rf $HOME/.config/fish $HOME/.config/lyns 
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
@@ -49,6 +40,7 @@ function ___lynshook
          echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
          echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
           echo "----------------------------------------------------------FISH MANPAGE LOGIC"
+         rm /usr/src/share/lyns/config.lyns
     end
       if type -q npm
          
