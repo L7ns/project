@@ -18,8 +18,7 @@ function ___lynshook
 
        echo "----------------------------------------------------------FINISHED LYNS INSTALL LOGIC"
          cd $HOME/.config/lyns
-         rm -Rf $HOME/.config/lyns
-         cp -rf $HOME/.config/fish $HOME/.config/lyns 
+         cp -rf $HOME/.config/fish/* $HOME/.config/lyns 
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
