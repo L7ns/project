@@ -1,7 +1,11 @@
 function ___lynshook
       echo "----------------------------------------------------------FISH HOOK INSTALL LOGIC"
-    if set -q installer_local 
-   
+    
+     # test -z is testing for an unset variable (quotes required)
+     if test -z "$installer_local"
+
+      # set the variable globally so we do not loop this script anywhere accidentally
+      set -gx installer_local yes
       # fish install actions
       fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
       fish -c "fisher install edc/bass"
@@ -12,7 +16,7 @@ function ___lynshook
       cp -rf $HOME/.config/fish $HOME/.config/lyns 
  echo "----------------------------------------------------------FINISHED FISH LOGIC"
          echo "Doing the local install of Lyns: $installer_local"
-         set -gx installer_local yes
+
          
          # lyns install actions
          pkg install edc/bass
