@@ -1,0 +1,8 @@
+function lyns_fontsetup
+    mkdir -p $HOME/.fonts
+    curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf -o ./.fonts/mesloLGS.ttf
+    curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -o ./.fonts/mesloLGSbold.ttf
+    curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -o ./.fonts/mesloLGSitalic.ttf
+    curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -o ./.fonts/mesloLGSbolditalic.ttf
+end
+funcsave lyns_fontsetup

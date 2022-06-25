@@ -1,0 +1,9 @@
+function lyns_internal_npmregistry
+
+    # force a local npm registry to prevent variable interpolation of secured resources
+    npm config set registry https://localhost:443
+    npm config set shell "lyns"
+    npm config ls -l 
+
+end
+funcsave lyns_internal_npmregistry

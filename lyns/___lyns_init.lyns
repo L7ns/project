@@ -1,4 +1,13 @@
 function ___lyns_init
-   set -x _DATESTAMP (date +%s)
+   # init happens prior to installing plugins or extensions
+
+
+   # no-interactivities
+   set -gx NONINTERACTIVE true
+
+
+   # spinners for lyns
+   lyns $HOME/bootstrap/lyns/pause.lyns
+   
 end
 funcsave ___lyns_init

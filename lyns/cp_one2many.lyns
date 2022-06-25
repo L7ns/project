@@ -1,0 +1,15 @@
+function cp_one2many
+    # cps from a single source to as many destinations with wildcards as you want passed as args
+    # first argument is the target single file or single directory to copy
+    # must be single source
+    set -l src_file $argv[1]
+
+    # separated by semicolons
+    set --path -l dest_wildcard $argv[2..999]
+    for x in ($dest_wildcard)
+        cp -rf src_file $x/
+    end
+
+end 
+funcsave cp_one2many
+

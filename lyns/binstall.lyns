@@ -1,0 +1,31 @@
+function binstall
+  if set -q $argv[1] 
+    
+    set -l binary $argv[1]
+    set -l permissions '0775'
+    set -l add '+'
+    set -l owner 'node'
+    set -l group '1001'
+    mkdir -p $__lyns_config_dir/.bin
+
+    if set -q binary && test -d $__lyns_config_dir/.bin
+      set -l binpath $__lyns_config_dir/.bin
+      set -l binfile "$__lyns_config_dir/.bin/$binary"
+      cp -f $binary $binfile
+      chmod $add $binfile
+      ls -l $binpath | grep $binary 
+    end 
+
+    set -l truthy (ls -l $binpath/ | grep -q $binary)
+    if not set -q $truthy 
+      echo "Did not find the binary you wished for us to move of perhaps you did not pass it"
+    end
+    if not set -q $binary
+      echo "This is scenario should not happen in the binstall function in Lyns.  Please debug that function."
+    end
+  else
+    echo "Please pass a binary file you wish to for Lyns to install for you."
+  end
+
+end
+funcsave binstall

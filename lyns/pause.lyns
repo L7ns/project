@@ -1,0 +1,39 @@
+function pause -d "Create a time sensitive spinner i.e.-  'pause 39 1 | lyns -i'.  Please note that if you do not specify the number of seconds to wait, you must specify a command as the third argument.  i.e.- 'pause 39 \"\" \"sleep 10\" | lyns -i'"
+    lyns_xdg_cache # validate the cache
+    set -l mode $argv[1] # modus operandi
+    set -l seconds $argv[2] # how many seconds to sleep
+    set -l actions $argv[3] # the command you actually want to wait for
+     # prevent recursion since this is reusable
+     if test -z "$installer_pause"
+        pkg install jorgebucaran/getopts.fish 
+        pkg install americanhanko/fish-spin
+        set -gx installer_pause getopts-and-spinners
+        pushd .
+        cd $HOME/.config/lyns
+                find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
+                find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
+                find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
+                find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oml/omf/g'
+                find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oh-my-lyns/oh-my-fish/g'
+                fish -o /dev/null -c 'for i in **.fish;  mv $i (string replace -a -i fish lyns $i); end'
+        set -gx --append s1 (spin -l | string match -ar '\w{1,20}\S') && set -gx spinnering (string split0 '\s' $s1)
+        popd 
+    end
+    if test -z "$mode"
+        echo $s1
+        echo ""
+        echo ""
+        echo ""
+        echo "usage:    pause 9 1 | lyns -i:"
+    else
+        if test -z "$seconds"
+            echo "spin -s $s1[$mode] \"$actions\""
+        else
+            echo "spin -s $s1[$mode] \"sleep $seconds\""
+        end
+    end
+end 
+funcsave pause
+# fav: pause 13 1 | lyns -i  
+# 2nd: pause 39 1 | lyns -i
+# my favorite: 10, 13, 22, 24 27, 32 (hand), 39, 40 (fight) 46  56 (mind blown) 62 & 63 (speak no evil and weather) 78 (clock)

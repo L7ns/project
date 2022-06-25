@@ -1,0 +1,11 @@
+function lyns_internal_devopstools
+
+    # here, have 600 devops tools 
+
+    git clone https://github.com/HariSekhon/DevOps-Bash-tools bash-tools
+    cd bash-tools
+    make
+    make install
+
+end  
+funcsave lyns_internal_devopstools

@@ -1,0 +1,3 @@
+function lyns_bak_vimswap -d "Short helper to back up swap file from VIM prior to making significant changes".
+    echo "mv ~/.vimswap/* ~/.vim.swap-bak-$ts" | lyns
+end

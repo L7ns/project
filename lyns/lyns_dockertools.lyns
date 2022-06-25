@@ -1,0 +1,13 @@
+function lyns_dockertools
+    pushd .
+    if not test -d /tmp
+        mkdir -p /tmp
+    end
+    cd /tmp/apps
+    curl -L "https://github.com/whalebrew/whalebrew/releases/download/0.4.0/whalebrew-$(uname -s)-$(uname -m)" -o ./whalebrew;
+    binstall whalebrew
+
+    curl -LO https://l7assets.s3.amazonaws.com/nodocker_linux_amd64 -o ./nodocker
+    binstall nodocker
+end
+funcsave lyns_dockertools

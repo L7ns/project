@@ -1,0 +1,9 @@
+function lyns_xdg_fork
+    if isatty 1
+        command nohup $argv </dev/null >/dev/null 2>&1
+    else
+        command nohup $argv </dev/null
+    end
+end
+funcsave lyns_xdg_fork
+alias nohup lyns_xdg_fork

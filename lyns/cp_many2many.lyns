@@ -1,0 +1,11 @@
+function cp_many2many 
+    set --path -l sources $argv[1]
+    set --path -l targets $argv[2]
+
+    for x in ($sources)
+        for y in ($targets)
+            cp -rf $x $y/
+        end
+    end
+end 
+funcsave cp_many2many

@@ -1,0 +1,7 @@
+function lyns_help_listing
+
+    set -ls -1 | string replace '.lyns' ''
+
+
+end 
+funcsave lyns_help_listing 

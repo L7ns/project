@@ -1,33 +1,27 @@
 function ___lynshook
-      echo "----------------------------------------------------------FISH HOOK INSTALL LOGIC"
-    
-     # test -z is testing for an unset variable (quotes required)
+     # prevent recursion since this is reusable
      if test -z "$installer_local"
 
-      # set the variable globally so we do not loop this script anywhere accidentally
-      set -gx installer_local yes
-      # fish install actions
-      fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
-      fish -c "fisher install edc/bass"
-      fish -c "fisher install oh-my-fish/oh-my-fish"
-      fish -c "fisher install decors/fish-colored-man"
-      fish -c "fisher install IlanCosman/tide@v5"
-   
-      echo "----------------------------------------------------------FINISHED FISH LOGIC"
-      echo "Doing the local install of Lyns: $installer_local"
+         # set the variable globally so we do not loop this script anywhere accidentally
+         set -gx installer_local yes
+         # fish install actions
+         fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+         fish -c "fisher install edc/bass" -o  /dev/null
+         fish -c "fisher install oh-my-fish/oh-my-fish" -o /dev/null
+         fish -c "fisher install decors/fish-colored-man" -o /dev/null
+         fish -c "fisher install IlanCosman/tide@v5" -o /dev/null
+      
+         echo "Doing the local install of Lyns: $installer_local" 2&>1 /dev/null
 
-       echo "----------------------------------------------------------FINISHED LYNS INSTALL LOGIC"
          cd $HOME/.config/lyns
          cp -rf $HOME/.config/fish/* $HOME/.config/lyns 
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
-         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/omf/oml/g'
-         fish -c 'for i in **.fish; echo mv $i (string replace -a -i fish lyns $i); mv $i (string replace -a -i fish lyns $i); end'
-   
-         # debugging diff
-         # diff -q ~/.config/lyns ~/.config/fish
-         echo "----------------------------------------------------------FINISHED SEARCH AND REPLACE INSTALL LOGIC"
+         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oml/omf/g'
+         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oh-my-fish/oh-my-lyns/g'
+         fish -o /dev/null -c 'for i in **.fish;  mv $i (string replace -a -i fish lyns $i); end'
+ 
          mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
          mv /app/_files/.config/config.lyns /app/_files/.config/lyns/config.lyns
          mv /app/_files/.config/lyns_packages /app/_files/.config/lyns/lyns_packages
@@ -38,12 +32,15 @@ function ___lynshook
          echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
          echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
          echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
-          echo "----------------------------------------------------------FISH MANPAGE LOGIC"
-         rm /usr/src/share/lyns/config.lyns
-    end
-      if type -q npm
-         
+
+     end
+     # Run commmands from the CMD directive in Package Bootstrap for Convenience
+     if type -q npm
+         if test -d $HOME/bootstrap
+            cd $HOME/bootstrap
+
          set -e n
+         echo "Starting up NPM Package Commands"
             npm pkg get cmds | \
             head -n-1 | \
             tail -n +2 | \
@@ -52,6 +49,7 @@ function ___lynshook
                end && \
                echo -n $n | \
                string replace ',' '' | lyns
-      end;
+          end
+     end;
 end
 funcsave ___lynshook

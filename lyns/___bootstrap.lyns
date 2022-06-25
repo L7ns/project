@@ -1,7 +1,10 @@
-function ___bootstrap
+# note:  all system files for lyns reside on an encrypted mount inside the hardened production container.
+function ___bootstrap -d "The primary initializing function for Lyns dynamic bootstrap"
+
+   # base level dynamic pre-init
    ___lyns_init
-   curl -LO https://l7assets.s3.amazonaws.com/nodocker_linux_amd64
-   # run directives from the package.json list of commands
+   
+   # dynamic bootstrap
    ___lynshook
 end 
 funcsave ___bootstrap

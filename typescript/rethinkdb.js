@@ -29,6 +29,7 @@ var bootrethink = /** @class */ (function () {
         // and completed as will signal rethinkdb it's ready to be used
         function () { return console.log('Completed; All OK'); });
         console.info("Server is running at port 8089");
+        ensureRethink.startServer();
     }
     return bootrethink;
 }());

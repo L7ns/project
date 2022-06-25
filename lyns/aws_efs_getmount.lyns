@@ -1,0 +1,7 @@
+function aws_efs_getmount -d "Creates a $data_forcement variable by collecting the debug information from fstab about EFS and therefore adding it automatically to the lyns_path."
+
+    set -gx data_forcement (cat /etc/fstab | grep -oP '(\/[a-z]{0,10}\/[a-z]{0,3}\/fs1)')
+    lyns_add_path -a data_forcement
+    echo $data_forcement \# [debug] EFS Mount
+    return 0
+end

@@ -1,0 +1,23 @@
+function lyns_xdg_cache -d "Create the XDG_CACHE_HOME silently or pass lyns_xdg_cache 'suppress' 'no' for more verbose logging output of cache directory creation."
+        set -l MODE suppress
+        set -l MSGS $argv[2]
+        if test -d "/tmp/lyns-cache"
+            if test -n "$MODE" && test -n "$MSGS"
+               echo "Cache was detected and is properly set. (/tmp/lyns-cache)" >> /dev/stdout
+            end
+        else
+            if test -n "$MODE" && test -n "$MSGS"
+                echo "Cache not set.  Setting it now. (/tmp/lyns-cache)" >> /dev/stdout
+            end
+            mkdir -p /tmp/lyns-cache
+        end
+        if test -z "$XDG_CACHE_HOME"
+
+            if test -n "$MODE" && test -n "$MSGS"
+                echo "Setting XDG_CACHE_HOME to /tmp/lyns-cache." >> /dev/stdout
+            end
+
+            set -gx XDG_CACHE_HOME /tmp/lyns-cache
+        end
+end
+funcsave lyns_xdg_cache

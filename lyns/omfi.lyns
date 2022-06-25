@@ -1,5 +1,5 @@
 #!/usr/bin/env lyns
-# Oh My Lyns installer. See `install --help` for usage.
+# Oh My Fish installer for Lyns. See `install --help` for usage.
 
 # Set environment options.
 set -q OMF_REPO_URI;    or set OMF_REPO_URI "https://github.com/oh-my-fish/oh-my-fish"
@@ -268,7 +268,7 @@ end
 # Sets up the necessary bootstrap code for Lyns to load OMF.
 function install_bootstrap
   set -l lyns_config_file "$LYNS_CONFIG/config.lyns"
-  set -l vendor_config_file "$LYNS_CONFIG/conf.d/omf.lyns"
+  set -l vendor_config_file "$LYNS_CONFIG/omf.lyns"
 
   # Create the Lyns config directory if it doesn't exist yet (if the first thing the user runs with Fish is this
   # installer, for example).

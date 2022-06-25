@@ -1,0 +1,12 @@
+
+function lyns_internal_apitools 
+
+    yarn global add @openapitools/openapi-generator-cli
+    yarn global add @onehilltech/blueprint-greenlock  
+    yarn global add @vue/cli
+    yarn global add quicktype
+    yarn global add snippet-enricher-cli
+    yarn global add vfonts
+    
+    
+end; funcsave lyns_internal_apitools;

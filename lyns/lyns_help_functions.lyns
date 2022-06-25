@@ -1,0 +1,8 @@
+function lyns_help_functions -d "Function that provides an automatic view into all the functions in the system by allowing the user to browse their details more easily"
+    set -l all_func (functions -a --no-details | string split ',')
+
+    for x in ($all_func)
+        functions --details --verbose $x 
+    end
+end 
+funcsave lyns_help_functions
