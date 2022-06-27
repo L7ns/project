@@ -1,0 +1,16 @@
+function ____lyns_clis_onedot onedot -d "One Dot CLI operates all feature CLIs throughout Lyns."
+   set -l primary_cmd $argv[1]
+    echo ".       - onedot CLI provides features for CLIs embedded throughout Lyns systems."
+    echo ".cli    - an alias for onedot CLI, an immersive CLI for managing other CLIs" 
+    echo ".int    - internal API Client operates all sell-documenting lyns internal APIs as CLI clients"
+    echo ".pkg    - lyns packages immersive cli mode"
+    echo ".ctn    - collections immersive cli mode" 
+    echo ".able   - able command line interface app provider for polyglot shells"
+    echo ".fisher - manage locally installed fisher packages inside lyns"
+    echo ".proj   - projects are scaffolded within LynsLang using this immersive tool"
+    echo "@pass   - shorthand CLI for passing arguments instead of entering an immersive mode"
+    echo "@       - list functionality for displaying the contents of specific directories with search enabled"
+    echo "...     - multiplex shell switching capabilities"
+    echo ".?      - help CLI explains how to use LynsLang, and Able Polyglot features"
+end 
+funcsave
