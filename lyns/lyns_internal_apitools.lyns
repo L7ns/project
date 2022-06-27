@@ -8,5 +8,9 @@ function lyns_internal_apitools
     yarn global add snippet-enricher-cli
     yarn global add vfonts
     
+
+    
+    # call docker-lambda or serverless or apex
+    # https://npm.io/package/docker-lambda-api-server
     
 end; funcsave lyns_internal_apitools;

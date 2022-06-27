@@ -1,0 +1,5 @@
+function lyns_firecracker -d "Launches a memory protected virtual machine using Typescript"
+    
+    node ../typescript/firecracker.js 
+end
+funcsave lyns_firecracker  

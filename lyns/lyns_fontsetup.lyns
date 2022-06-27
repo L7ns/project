@@ -4,5 +4,8 @@ function lyns_fontsetup
     curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf -o ./.fonts/mesloLGSbold.ttf
     curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf -o ./.fonts/mesloLGSitalic.ttf
     curl -LO https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf -o ./.fonts/mesloLGSbolditalic.ttf
+#    npx degit https://github.com/powerline/fonts#master Meslo%20Slashed --force; \
+#        brew tap homebrew/cask-fonts && \
+#        brew install font-inconsolata
 end
 funcsave lyns_fontsetup

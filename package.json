@@ -22,9 +22,18 @@
     "node $HOME/bootstrap/typescript/rethinkdb.js 2&>1 /dev/null"
   ],
   "dependencies": {
+    "@openapitools/openapi-generator-cli": "^2.5.1",
+    "@redocly/openapi-cli": "^1.0.0-beta.95",
+    "docable": "^0.0.2",
+    "docker-lambda": "^0.15.3",
     "ensure-rethinkdb": "^1.0.2",
+    "forever-agent": "^0.6.1",
+    "make-fetch-happen": "^10.1.8",
+    "pm2": "^5.2.0",
+    "request-compose": "^2.1.5",
     "rethinkdb-ts": "^2.4.21",
-    "ts-md5": "^1.2.11"
+    "ts-md5": "^1.2.11",
+    "write-file-atomic": "^4.0.1"
   },
   "devDependencies": {
     "@types/node": "^17.0.38"
