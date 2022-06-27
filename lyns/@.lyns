@@ -1,0 +1,10 @@
+function @
+     set -l primary_cmd $argv[1]
+     if test -z "$primary_cmd"
+        echo $LYNSHEAD
+        echo $LYNS_PROMPT
+        echo $LYNSFOOT
+     end 
+end
+funcsave @
+alias '.x' '@'

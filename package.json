@@ -18,7 +18,6 @@
   "homepage": "https://bitbucket.org/lab7io/lynshell#readme",
   "cmds": [
     "corepack enable # ensures programmatic installation of yarn and inpm",
-    "yarn global add pm2@latest npm-bump quicktype deno typescript tsc es-lint prettier dockerode dockerode-composenode-ssh greenlock greenlock-express",
     "tsc $HOME/bootstrap/typescript/rethinkdb.ts 2&>1 /dev/null",
     "node $HOME/bootstrap/typescript/rethinkdb.js 2&>1 /dev/null"
   ],

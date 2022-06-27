@@ -1,0 +1,4 @@
+function .l -d "Master List Functionality for directory and file actions delegation"
+   set -l primary_cmd $argv[1]
+end 
+funcsave
