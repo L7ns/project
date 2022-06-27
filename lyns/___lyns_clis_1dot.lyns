@@ -1,4 +1,4 @@
-function ____lyns_clis_onedot onedot -d "One Dot CLI operates all feature CLIs throughout Lyns."
+function ___lyns_clis_1dot -d "One Dot CLI operates all feature CLIs throughout Lyns."
    set -l primary_cmd $argv[1]
     echo ".       - onedot CLI provides features for CLIs embedded throughout Lyns systems."
     echo ".cli    - an alias for onedot CLI, an immersive CLI for managing other CLIs" 
@@ -13,4 +13,4 @@ function ____lyns_clis_onedot onedot -d "One Dot CLI operates all feature CLIs t
     echo "...     - multiplex shell switching capabilities"
     echo ".?      - help CLI explains how to use LynsLang, and Able Polyglot features"
 end 
-funcsave
+funcsave ___lyns_clis_1dot
