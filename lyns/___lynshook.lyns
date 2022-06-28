@@ -21,11 +21,6 @@ function ___lynshook
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oml/omf/g'
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oh-my-fish/oh-my-lyns/g'
          fish -o /dev/null -c 'for i in **.fish;  mv $i (string replace -a -i fish lyns $i); end'
- 
-         mv /app/_files/.config/lyns_prompt.lyns /app/_files/.config/lyns/functions/lyns_prompt.lyns
-         mv /app/_files/.config/config.lyns /app/_files/.config/lyns/config.lyns
-         mv /app/_files/.config/lyns_packages /app/_files/.config/lyns/lyns_packages
-         mv /app/_files/.config/lyns_variables /app/_files/.config/lyns/lyns_variables
 
          # Solarized Dark & Green highlight
          echo "set -g man_blink -o red" >> ~/.config/fish/config.fish
