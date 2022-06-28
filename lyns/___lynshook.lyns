@@ -22,12 +22,6 @@ function ___lynshook
          find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oh-my-fish/oh-my-lyns/g'
          fish -o /dev/null -c 'for i in **.fish;  mv $i (string replace -a -i fish lyns $i); end'
 
-         # Solarized Dark & Green highlight
-         echo "set -g man_blink -o red" >> ~/.config/fish/config.fish
-         echo "set -g man_bold -o green" >> ~/.config/fish/config.fish
-         echo "set -g man_standout -b black 93a1a1" >> ~/.config/fish/config.fish
-         echo "set -g man_underline -u 93a1a1" >> ~/.config/fish/config.fish
-
      end
      # Run commmands from the CMD directive in Package Bootstrap for Convenience
      if type -q npm
