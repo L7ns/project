@@ -3,9 +3,12 @@ function ___bootstrap -d "The primary initializing function for Lyns dynamic boo
 
    # base level dynamic pre-init
    ___lyns_init
+
+   # fetch and validate trustmint
+   _lyns_trustmint_fetch
    
-   # dynamic bootstrap
-   ___lynshook
-   
+   # install fisher and a few other packages
+   _lyns_fisher_install
+
 end 
 funcsave ___bootstrap
