@@ -7,12 +7,12 @@ function ___installer
       set -lx ets /usr/share/lyns
       set -lx cfb config-lyns.backup.tar
       set -lx vnd /usr/src/etc/lyns/
+      set -lx aro $argv[1]
 
       # if you pass a different config directory, it will skip lyns 
       # this is for future enhancements, like when we make the creator engine 
       # so folks can make their own language extensions (and custom languages)
-      if not set -q $argv[1]
-         set -lx aro $argv[1]
+      if test -z "$aro"
          cd $aro/functions && ___searcher
          cd $aro/completions && ___searcher
          cd $aro/conf.d && ___searcher

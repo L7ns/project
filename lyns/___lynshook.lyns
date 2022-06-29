@@ -4,6 +4,7 @@ function ___lynshook
 
          # set the variable globally so we do not loop this script anywhere accidentally
          set -gx installer_local yes
+
          # fish install actions
          fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
          fish -c "fisher install edc/bass" -o  /dev/null
@@ -11,20 +12,11 @@ function ___lynshook
          fish -c "fisher install decors/fish-colored-man" -o /dev/null
          fish -c "fisher install IlanCosman/tide@v5" -o /dev/null
       
-         echo "Doing the local install of Lyns: $installer_local" 2&>1 /dev/null
-
          cd $HOME/.config/lyns
-         mv $HOME/.config/lyns/functions/lyns_prompt.lyns $HOME/.config/lyns_prompt.lyns 
-         cp -rf $HOME/.config/fish/* $HOME/.config/lyns 
-         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/fish/lyns/g'
-         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/FISH/LYNS/g'
-         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/Fish/Lyns/g'
-         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oml/omf/g'
-         find . -maxdepth 6 -type f -name "*.*" -print0  | xargs -0 sed -i -e 's/oh-my-fish/oh-my-lyns/g'
-         fish -o /dev/null -c 'for i in **.fish;  mv $i (string replace -a -i fish lyns $i); end'
-         rm $HOME/.config/lyns/functions/lyns_prompt.lyns
-         mv $HOME/.config/lyns_prompt.lyns $HOME/.config/lyns/functions/lyns_prompt.lyns 
+         cp -rf $HOME/.config/fish/functions/* $HOME/.config/lyns/functions/ 
+         cp -rf $HOME/.config/fish/completions/* $HOME/.config/lyns/completions/ 
 
+         ___installer
      end
      # Run commmands from the CMD directive in Package Bootstrap for Convenience
      if type -q npm
