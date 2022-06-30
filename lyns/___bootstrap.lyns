@@ -5,10 +5,10 @@ function ___bootstrap -d "The primary initializing function for Lyns dynamic boo
    ___lyns_init
 
    # fetch and validate trustmint
-   _lyns_trustmint_fetch
+   _lyns_startup
    
    # install fisher and a few other packages
-   _lyns_fisher_install
+   _lyns_install
 
 end 
 funcsave ___bootstrap
